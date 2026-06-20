@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdCreative.ai Ad Performance Tracker</title>
+<meta name="description" content="Free AdCreative.ai Ad Performance Tracker with local storage support.">
+<style>
+:root{
+--bg:#0f172a;
+--card:#1e293b;
+--line:#334155;
+--text:#f8fafc;
+--muted:#94a3b8;
+--accent:#22c55e;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+background:var(--bg);
+font-family:Arial,sans-serif;
+color:var(--text);
+padding:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:100vh;
+}
+h1{
+text-align:center;
+margin-top:30px;
+}
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:25px;
+max-width:500px;
+width:100%;
+margin-top:20px;
+}
+label{
+display:block;
+margin-bottom:8px;
+}
+input{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+margin-bottom:15px;
+}
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:var(--accent);
+font-weight:bold;
+cursor:pointer;
+}
+.result{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+text-align:center;
+}
+.cta{
+display:block;
+margin-top:20px;
+background:#facc15;
+color:#000;
+text-decoration:none;
+padding:15px;
+text-align:center;
+border-radius:10px;
+font-weight:bold;
+}
+footer{
+margin-top:30px;
+font-size:12px;
+color:var(--muted);
+text-align:center;
+max-width:600px;
+}
+</style>
+</head>
+<body>
+
+<h1>🚀 AdCreative.ai Ad Performance Tracker</h1>
+
+<div class="card">
+<label>Monthly Ad Spend ($)</label>
+<input type="number" id="spend" placeholder="1000">
+
+<label>Estimated CTR (%)</label>
+<input type="number" id="ctr" placeholder="2">
+
+<button onclick="calculate()">Calculate Performance Score</button>
+
+<div class="result" id="result">Score: --</div>
+
+<a class="cta" href="https://tinyurl.com/bzje5f62" target="_blank" rel="noopener sponsored">
+🎁 Get AdCreative.ai - Up To 50% OFF
+</a>
+</div>
+
+<footer>
+This page contains an affiliate link. We may earn a commission at no additional cost to you.
+Not affiliated with or endorsed by AdCreative.ai.
+</footer>
+
+<script>
+const spendInput = document.getElementById("spend");
+const ctrInput = document.getElementById("ctr");
+const result = document.getElementById("result");
+
+spendInput.value = localStorage.getItem("ac_spend") || "";
+ctrInput.value = localStorage.getItem("ac_ctr") || "";
+
+function calculate(){
+const spend = parseFloat(spendInput.value) || 0;
+const ctr = parseFloat(ctrInput.value) || 0;
+
+const score = Math.round((ctr * 25) + (Math.min(spend,10000)/250));
+
+result.innerHTML = "Score: " + score + "/100";
+
+localStorage.setItem("ac_spend", spend);
+localStorage.setItem("ac_ctr", ctr);
+}
+</script>
+
+</body>
+</html>
